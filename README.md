@@ -1,2 +1,313 @@
-# Submit
-official assignment submission 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Portal | Submit Assignments</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: #f4f7f6;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header / Hero Section */
+        .hero {
+            background: linear-gradient(rgba(17, 45, 78, 0.8), rgba(17, 45, 78, 0.8)), url('https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1920&q=80') center/cover;
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 800px;
+            margin: -40px auto 40px;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 10;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            color: #112d4e;
+            margin-bottom: 25px;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 10px;
+        }
+
+        /* Form Styling */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #4a5568;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #cbd5e0;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #3f72af;
+            box-shadow: 0 0 0 3px rgba(63, 114, 175, 0.1);
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        /* Custom File Upload */
+        .file-upload-wrapper {
+            border: 2px dashed #cbd5e0;
+            border-radius: 6px;
+            padding: 30px;
+            text-align: center;
+            background-color: #f8fafc;
+            transition: background-color 0.3s;
+            cursor: pointer;
+            display: block;
+        }
+
+        .file-upload-wrapper:hover {
+            background-color: #edf2f7;
+            border-color: #3f72af;
+        }
+
+        .file-upload-wrapper input[type="file"] {
+            display: none;
+        }
+
+        .file-upload-btn {
+            background: #3f72af;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            display: inline-block;
+            margin-top: 10px;
+            font-weight: 600;
+        }
+
+        /* Submit Button */
+        .submit-btn {
+            width: 100%;
+            background: #112d4e;
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.1s;
+            margin-top: 20px;
+        }
+
+        .submit-btn:hover {
+            background: #0d223a;
+        }
+
+        .submit-btn:disabled {
+            background: #a0aec0;
+            cursor: not-allowed;
+        }
+
+        /* Status Alerts */
+        .alert {
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            display: none;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .alert-error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #718096;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                margin: 20px;
+                padding: 25px;
+            }
+            .hero {
+                padding: 60px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <h1>Student Submission Portal</h1>
+        <p>Welcome! Please use this form to upload and submit your latest classwork, assignments, or projects. Ensure your files are clearly named.</p>
+    </header>
+
+    <!-- Main Content / Form -->
+    <main class="container">
+        <h2 class="section-title">Assignment Details</h2>
+
+        <!-- Status Message Banner -->
+        <div id="statusAlert" class="alert"></div>
+
+        <!-- Form submitting asynchronously via JS -->
+        <form id="assignmentForm" action="https://formsubmit.co/ajax/awotideoluwaseun@gmail.com" method="POST" enctype="multipart/form-data">
+            
+            <!-- FormSubmit Configurations -->
+            <input type="hidden" name="_subject" value="New Student Assignment Submission!">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_template" value="table">
+
+            <div class="form-group">
+                <label for="fullName">Full Name</label>
+                <input type="text" id="fullName" name="Full Name" class="form-control" placeholder="e.g. John Doe" required>
+            </div>
+
+            <div class="form-group">
+                <label for="studentId">Student ID / Matric Number</label>
+                <input type="text" id="studentId" name="Student ID" class="form-control" placeholder="e.g. STU-2026-001" required>
+            </div>
+
+            <div class="form-group">
+                <label for="submissionType">Submission Type</label>
+                <select id="submissionType" name="Submission Type" class="form-control" required>
+                    <option value="" disabled selected>Select an option...</option>
+                    <option value="Classwork">Classwork</option>
+                    <option value="Take-Home Assignment">Take-Home Assignment</option>
+                    <option value="Final Project">Final Project</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="courseName">Course / Subject</label>
+                <input type="text" id="courseName" name="Course Name" class="form-control" placeholder="e.g. Introduction to Computer Science" required>
+            </div>
+
+            <div class="form-group">
+                <label>Upload Your Work</label>
+                <label class="file-upload-wrapper" for="fileUpload">
+                    <p id="fileText">Drag and drop your file here, or click to browse</p>
+                    <span class="file-upload-btn">Choose File</span>
+                    <input type="file" id="fileUpload" name="Attachment" required>
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label for="comments">Additional Comments (Optional)</label>
+                <textarea id="comments" name="Comments" class="form-control" placeholder="Any notes for the instructor..."></textarea>
+            </div>
+
+            <button type="submit" id="submitBtn" class="submit-btn">Submit Assignment</button>
+
+        </form>
+    </main>
+
+    <footer>
+        &copy; 2026 Instructor Portal. All rights reserved.
+    </footer>
+
+    <script>
+        // File selection display text
+        const fileInput = document.getElementById('fileUpload');
+        const fileText = document.getElementById('fileText');
+
+        fileInput.addEventListener('change', function(e) {
+            const fileName = e.target.files[0] ? e.target.files[0].name : 'Drag and drop your file here, or click to browse';
+            fileText.innerText = 'Selected file: ' + fileName;
+        });
+
+        // AJAX Form Submission
+        const form = document.getElementById('assignmentForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const statusAlert = document.getElementById('statusAlert');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Indicate loading state
+            submitBtn.disabled = true;
+            submitBtn.innerText = 'Submitting... Please wait...';
+            statusAlert.style.display = 'none';
+
+            const formData = new FormData(form);
+
+            fetch('https://formsubmit.co/ajax/awotideoluwaseun@gmail.com', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                statusAlert.className = 'alert alert-success';
+                statusAlert.innerText = 'Success! Your assignment has been submitted successfully.';
+                statusAlert.style.display = 'block';
+
+                form.reset();
+                fileText.innerText = 'Drag and drop your file here, or click to browse';
+            })
+            .catch(error => {
+                statusAlert.className = 'alert alert-error';
+                statusAlert.innerText = 'Oops! Something went wrong. Please check your network and try again.';
+                statusAlert.style.display = 'block';
+            })
+            .finally(() => {
+                submitBtn.disabled = false;
+                submitBtn.innerText = 'Submit Assignment';
+            });
+        });
+    </script>
+</body>
+</html>
